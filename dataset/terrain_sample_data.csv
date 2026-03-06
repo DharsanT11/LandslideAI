@@ -1,0 +1,6 @@
+zone_id,zone_name,lat,lon,avg_slope,elevation,soil_type,infrastructure_type
+1,NH-44 Highway Corridor,34.08,74.79,35.0,1620,clay_loam,highway
+2,Mountain Pass Zone,34.15,74.85,42.0,2150,rocky_clay,defense_route
+3,Valley Supply Route,34.02,74.72,22.0,1540,alluvial,supply_route
+4,Strategic Defense Post,34.12,74.92,38.0,1890,clay_loam,radar_station
+5,Bridge Crossing Zone,34.05,74.68,28.0,1580,sandy_clay,bridge
