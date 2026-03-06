@@ -5,6 +5,7 @@ import requests
 from datetime import datetime
 from app.config import Config
 from app.utils.feature_engineering import compute_soil_moisture, compute_rainfall_trend
+from app.services.hardware_data import get_hardware_reading
 
 
 def fetch_weather_for_zone(zone):
@@ -48,8 +49,17 @@ def fetch_weather_for_zone(zone):
     wind_speed = wind.get('speed', 0)
     weather_desc = weather.get('description', '')
 
-    # Estimate soil moisture from weather data
-    soil_moisture = compute_soil_moisture(rainfall_1h, humidity, temperature, rainfall_3h)
+    # Check if we have real hardware data for this zone
+    hw_reading = get_hardware_reading(zone['zone_id'])
+    if hw_reading:
+        soil_moisture = hw_reading['soil_moisture']
+        # Optionally tag the datasource
+        data_source = 'ESP32_Hardware + OWM'
+    else:
+        # Estimate soil moisture from weather data
+        soil_moisture = compute_soil_moisture(rainfall_1h, humidity, temperature, rainfall_3h)
+        data_source = 'openweathermap'
+        
     rainfall_trend = compute_rainfall_trend(rainfall_1h, rainfall_3h)
 
     return {
@@ -66,7 +76,7 @@ def fetch_weather_for_zone(zone):
         'weather_desc': weather_desc,
         'rainfall_3h': round(rainfall_3h, 1),
         'rainfall_trend': rainfall_trend,
-        'data_source': 'openweathermap',
+        'data_source': data_source,
     }
 
 

@@ -11,6 +11,7 @@ from app.database.db import Database
 from app.routes.sensor_routes import sensor_bp
 from app.routes.prediction_routes import prediction_bp
 from app.routes.alert_routes import alert_bp
+from app.routes.esp32_routes import esp32_bp
 from app.services.risk_engine import run_risk_assessment
 from app.services.forecast_engine import generate_forecast
 
@@ -28,6 +29,7 @@ def create_app():
     app.register_blueprint(sensor_bp)
     app.register_blueprint(prediction_bp)
     app.register_blueprint(alert_bp)
+    app.register_blueprint(esp32_bp)
 
     # Health check
     @app.route('/api/health', methods=['GET'])

@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    container_name: landslide-backend
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    container_name: landslide-frontend
+    restart: unless-stopped
+    # Use polling for hot-reload in docker
+    environment:
+      - WATCHPACK_POLLING=true
+    depends_on:
+      - backend

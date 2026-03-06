@@ -8,8 +8,9 @@ import ForecastChart from '../components/ForecastChart'
 function Dashboard() {
     const { sensorData, prediction, alerts, forecast, loading, backendStatus } = useSensorData(30000)
 
+    // Determine if backend API is connected
     const statusLabel =
-        backendStatus === 'live' ? '🟢 Live — OpenWeatherMap' :
+        backendStatus === 'live' ? '🟢 Live — ESP32 + OpenWeatherMap' :
             backendStatus === 'no_api_key' ? '🟡 Backend running — API key not configured' :
                 backendStatus === 'connecting' ? '⏳ Connecting to backend...' :
                     '🔴 Backend offline'
