@@ -171,6 +171,38 @@ export async function fetchHealth() {
     }
 }
 
+// ── Hardware Live Monitoring ────────────────────────────
+
+export async function fetchHardwareHistory(zoneId = null) {
+    try {
+        let url = `${API_BASE}/esp32/history`
+        if (zoneId != null) url += `?zone_id=${zoneId}`
+        const res = await fetch(url)
+        const data = await res.json()
+        if (data.status === 'ok') {
+            return data.history
+        }
+        return {}
+    } catch (err) {
+        console.error('Hardware history API error:', err)
+        return {}
+    }
+}
+
+export async function fetchHardwareStatus() {
+    try {
+        const res = await fetch(`${API_BASE}/esp32/status`)
+        const data = await res.json()
+        if (data.status === 'ok') {
+            return data
+        }
+        return { active_hardware_zones: 0, readings: {} }
+    } catch (err) {
+        console.error('Hardware status API error:', err)
+        return { active_hardware_zones: 0, readings: {} }
+    }
+}
+
 // ── Static Map Data (unchanged — these are configuration, not API data) ──
 
 export const RISK_ZONES = [

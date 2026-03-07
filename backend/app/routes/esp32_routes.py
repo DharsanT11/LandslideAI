@@ -1,6 +1,10 @@
 """Routes for receiving data from physical ESP32 hardware sensors."""
 from flask import Blueprint, request, jsonify
-from app.services.hardware_data import update_hardware_reading, get_all_hardware_readings
+from app.services.hardware_data import (
+    update_hardware_reading,
+    get_all_hardware_readings,
+    get_hardware_history,
+)
 
 esp32_bp = Blueprint('esp32', __name__)
 
@@ -55,4 +59,16 @@ def get_hardware_status():
         "status": "ok",
         "active_hardware_zones": len(readings),
         "readings": readings
+    }), 200
+
+@esp32_bp.route('/api/esp32/history', methods=['GET'])
+def get_history():
+    """Return the rolling time-series history of hardware sensor readings.
+    Optional query param: ?zone_id=N to filter by zone.
+    """
+    zone_id = request.args.get('zone_id', type=int)
+    history = get_hardware_history(zone_id)
+    return jsonify({
+        "status": "ok",
+        "history": history,
     }), 200

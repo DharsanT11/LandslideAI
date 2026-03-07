@@ -5,6 +5,7 @@ import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import RiskMapPage from './pages/RiskMapPage'
 import AlertsPage from './pages/AlertsPage'
+import LiveMonitoringPage from './pages/LiveMonitoringPage'
 import About from './pages/About'
 import { triggerAlertSave } from './services/api'
 
@@ -37,6 +38,7 @@ function App() {
                 } />
                 <Route path="/map" element={<RiskMapPage />} />
                 <Route path="/alerts" element={<AlertsPage />} />
+                <Route path="/live-monitoring" element={<LiveMonitoringPage />} />
                 <Route path="/about" element={<About />} />
             </Routes>
         </>

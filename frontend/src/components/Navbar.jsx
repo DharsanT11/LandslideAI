@@ -29,6 +29,7 @@ function Navbar() {
                 <li><NavLink to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</NavLink></li>
                 <li><NavLink to="/map" onClick={() => setMenuOpen(false)}>Risk Map</NavLink></li>
                 <li><NavLink to="/alerts" onClick={() => setMenuOpen(false)}>Alerts</NavLink></li>
+                <li><NavLink to="/live-monitoring" onClick={() => setMenuOpen(false)}>Live Monitoring</NavLink></li>
                 <li><NavLink to="/about" onClick={() => setMenuOpen(false)}>About</NavLink></li>
             </ul>
 
