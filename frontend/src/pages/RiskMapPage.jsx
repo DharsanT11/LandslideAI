@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Map as MapIcon } from 'lucide-react'
 import RiskMap from '../components/RiskMap'
 import { RISK_ZONES, INFRASTRUCTURE_MARKERS } from '../services/api'
 
@@ -10,7 +11,9 @@ function RiskMapPage() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
             >
-                <h1>🗺️ Landslide Risk Map</h1>
+                <h1 style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <MapIcon size={36} color="#3b82f6" /> Landslide Risk Map
+                </h1>
                 <p>Geospatial risk visualization with infrastructure overlay — zoom and click for details</p>
             </motion.div>
 
@@ -21,7 +24,7 @@ function RiskMapPage() {
             >
                 <RiskMap zones={RISK_ZONES} markers={INFRASTRUCTURE_MARKERS} />
             </motion.div>
-        </div>
+        </div >
     )
 }
 

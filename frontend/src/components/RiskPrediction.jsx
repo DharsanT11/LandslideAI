@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Brain, AlertCircle, AlertTriangle, CheckCircle2 } from 'lucide-react'
 
 function RiskPrediction({ riskLevel, probability }) {
     const riskClass =
@@ -9,9 +10,11 @@ function RiskPrediction({ riskLevel, probability }) {
         riskLevel === 'HIGH' ? 'fill-high' :
             riskLevel === 'MEDIUM' ? 'fill-medium' : 'fill-low'
 
-    const riskIcon =
-        riskLevel === 'HIGH' ? '🔴' :
-            riskLevel === 'MEDIUM' ? '🟡' : '🟢'
+    const getRiskIcon = () => {
+        if (riskLevel === 'HIGH') return <AlertCircle size={24} />
+        if (riskLevel === 'MEDIUM') return <AlertTriangle size={24} />
+        return <CheckCircle2 size={24} />
+    }
 
     const riskColor =
         riskLevel === 'HIGH' ? '#ef4444' :
@@ -20,7 +23,9 @@ function RiskPrediction({ riskLevel, probability }) {
     return (
         <div className="glass-card col-span-4">
             <div className="card-header">
-                <h3>🤖 AI Risk Prediction</h3>
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Brain size={18} className="text-accent" /> AI Risk Prediction
+                </h3>
                 <span className={`card-badge ${riskLevel === 'HIGH' ? 'badge-danger' : riskLevel === 'MEDIUM' ? 'badge-warning' : 'badge-live'}`}>
                     {riskLevel}
                 </span>
@@ -33,7 +38,9 @@ function RiskPrediction({ riskLevel, probability }) {
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: 'spring', stiffness: 300 }}
                 >
-                    {riskIcon} {riskLevel} RISK
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        {getRiskIcon()} {riskLevel} RISK
+                    </span>
                 </motion.div>
 
                 <div className="risk-probability">
@@ -59,7 +66,7 @@ function RiskPrediction({ riskLevel, probability }) {
                 </div>
 
                 <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#64748b' }}>
-                    AI Model: Random Forest + Gradient Boosting Ensemble
+                    AI Model: Random Forest + LSTM + Neural Network Ensemble v3.0
                 </div>
             </div>
         </div>

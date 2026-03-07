@@ -1,7 +1,10 @@
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import { motion } from 'framer-motion'
+import { TrendingUp, BarChart3 } from 'lucide-react'
 
 function ForecastChart({ forecast }) {
+    const safeForecast = Array.isArray(forecast) ? forecast : []
+
     const getDotClass = (level) => {
         if (level === 'High') return 'dot-high'
         if (level === 'Medium') return 'dot-medium'
@@ -35,17 +38,46 @@ function ForecastChart({ forecast }) {
         return null
     }
 
+    // Empty state
+    if (safeForecast.length === 0) {
+        return (
+            <div className="glass-card col-span-6">
+                <div className="card-header">
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <TrendingUp size={18} className="text-accent" /> Risk Forecast
+                    </h3>
+                    <span className="card-badge badge-live">24H Prediction</span>
+                </div>
+                <motion.div
+                    className="forecast-empty-state"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    <div className="forecast-empty-icon">📊</div>
+                    <div className="forecast-empty-title">No Forecast Data Available</div>
+                    <div className="forecast-empty-desc">
+                        Forecast will appear once weather forecast data is retrieved
+                        from the API. This may take a moment after entering coordinates.
+                    </div>
+                </motion.div>
+            </div>
+        )
+    }
+
     return (
         <div className="glass-card col-span-6">
             <div className="card-header">
-                <h3>📈 Risk Forecast</h3>
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <TrendingUp size={18} className="text-accent" /> Risk Forecast
+                </h3>
                 <span className="card-badge badge-live">24H Prediction</span>
             </div>
 
             {/* Chart */}
             <div className="forecast-chart-wrapper">
                 <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={forecast} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
+                    <AreaChart data={safeForecast} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
                         <defs>
                             <linearGradient id="riskGradient" x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
@@ -97,7 +129,7 @@ function ForecastChart({ forecast }) {
 
             {/* Timeline */}
             <div className="forecast-timeline">
-                {forecast.map((step, i) => (
+                {safeForecast.map((step, i) => (
                     <motion.div
                         key={step.time}
                         className="forecast-step"

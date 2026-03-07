@@ -20,6 +20,25 @@ def fetch_weather_for_zone(zone):
         # Fallback: return None so the caller can handle it
         return None
 
+    # Demo Mode Intercept for Presentation
+    if round(zone.get('lat', 0), 2) == 99.99 and round(zone.get('lon', 0), 2) == 99.99:
+        return {
+            'zone_id': zone.get('zone_id', 0),
+            'zone_name': zone.get('name', 'Demo Zone'),
+            'timestamp': datetime.utcnow().isoformat(),
+            'rainfall_mm': 210.5,
+            'humidity_pct': 98.0,
+            'temperature_c': 26.5,
+            'soil_moisture': 95.5,
+            'slope_angle': zone.get('slope_angle', 48.5),
+            'elevation_m': zone.get('elevation', 1500),
+            'wind_speed': 65.0,
+            'weather_desc': 'extreme torrential downpour',
+            'rainfall_3h': 450.0,
+            'rainfall_trend': 2.8,
+            'data_source': 'DEMO_OVERRIDE_ACTIVE',
+        }
+
     url = f"{Config.OPENWEATHER_BASE_URL}/weather"
     params = {
         'lat': zone['lat'],
@@ -118,6 +137,26 @@ def fetch_forecast_for_zone(zone):
 
     if not api_key or api_key == 'your_api_key_here':
         return None
+
+    # Demo Mode Intercept for Forecast
+    if round(zone.get('lat', 0), 2) == 99.99 and round(zone.get('lon', 0), 2) == 99.99:
+        now = datetime.utcnow()
+        import datetime as dt
+        demo_forecasts = []
+        for i in range(8):
+            demo_forecasts.append({
+                'timestamp': (now + dt.timedelta(hours=i*3)).isoformat(),
+                'rainfall_mm': 150.0 + (i * 10),
+                'humidity_pct': 99.0,
+                'temperature_c': 25.0,
+                'soil_moisture': 98.0,
+                'slope_angle': zone.get('slope_angle', 48.5),
+                'elevation_m': zone.get('elevation', 1500),
+                'rainfall_3h': 400.0,
+                'rainfall_trend': 2.5,
+                'wind_speed': 70.0,
+            })
+        return demo_forecasts
 
     url = f"{Config.OPENWEATHER_BASE_URL}/forecast"
     params = {

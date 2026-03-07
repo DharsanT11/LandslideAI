@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { ShieldAlert } from 'lucide-react'
 
 /* ── Inline SVG Icon Components ─────────────────────────── */
 
@@ -350,7 +351,9 @@ function Landing() {
                 <div className="lp-footer-inner">
                     <div className="lp-footer-brand">
                         <div className="lp-footer-logo">
-                            <div className="navbar-logo-icon" style={{ width: 28, height: 28, fontSize: '0.9rem', borderRadius: 6 }}>🛡️</div>
+                            <div className="navbar-logo-icon" style={{ width: 28, height: 28, fontSize: '0.9rem', borderRadius: 6 }}>
+                                <ShieldAlert size={18} color="#fff" />
+                            </div>
                             <strong>LandslideAI</strong>
                         </div>
                         <p>

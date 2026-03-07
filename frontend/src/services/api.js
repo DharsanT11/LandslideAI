@@ -5,15 +5,27 @@
  * - Real weather data from OpenWeatherMap
  * - ML-powered landslide risk predictions
  * - Database-backed alerts
+ *
+ * All fetch functions accept optional lat/lon to query a custom location.
  */
 
 const API_BASE = '/api'
 
+/**
+ * Build a query string from lat/lon. Returns '' if neither is set.
+ */
+function locationQuery(lat, lon) {
+    if (lat != null && lon != null) {
+        return `?lat=${lat}&lon=${lon}`
+    }
+    return ''
+}
+
 // ── Sensor Data ─────────────────────────────────────────
 
-export async function fetchSensorData() {
+export async function fetchSensorData(lat, lon) {
     try {
-        const res = await fetch(`${API_BASE}/sensors`)
+        const res = await fetch(`${API_BASE}/sensors${locationQuery(lat, lon)}`)
         const data = await res.json()
         if (data.status === 'ok' && data.summary) {
             return {
@@ -36,9 +48,9 @@ export async function fetchSensorData() {
 
 // ── Risk Prediction ─────────────────────────────────────
 
-export async function fetchPrediction() {
+export async function fetchPrediction(lat, lon) {
     try {
-        const res = await fetch(`${API_BASE}/prediction`)
+        const res = await fetch(`${API_BASE}/prediction${locationQuery(lat, lon)}`)
         const data = await res.json()
         if (data.status === 'ok' && data.overall) {
             return {
@@ -58,9 +70,9 @@ export async function fetchPrediction() {
 
 // ── Forecast ────────────────────────────────────────────
 
-export async function fetchForecast() {
+export async function fetchForecast(lat, lon) {
     try {
-        const res = await fetch(`${API_BASE}/forecast`)
+        const res = await fetch(`${API_BASE}/forecast${locationQuery(lat, lon)}`)
         const data = await res.json()
         if (data.status === 'ok' && data.timeline) {
             return data.timeline.map((step) => ({
@@ -82,9 +94,9 @@ export async function fetchForecast() {
 
 // ── Alerts ──────────────────────────────────────────────
 
-export async function fetchAlerts() {
+export async function fetchAlerts(lat, lon) {
     try {
-        const res = await fetch(`${API_BASE}/alerts`)
+        const res = await fetch(`${API_BASE}/alerts${locationQuery(lat, lon)}`)
         const data = await res.json()
         if (data.status === 'ok') {
             return data.alerts.map((alert, i) => ({
@@ -103,15 +115,27 @@ export async function fetchAlerts() {
     }
 }
 
+/**
+ * One-shot call to generate AND save an alert for a location.
+ * Only called when user explicitly clicks Search.
+ */
+export async function triggerAlertSave(lat, lon) {
+    try {
+        await fetch(`${API_BASE}/alerts?lat=${lat}&lon=${lon}&save=1`)
+    } catch (err) {
+        // Silent — best effort
+    }
+}
+
 export async function fetchAlertsHistory(riskLevel = 'ALL', hours = null) {
     try {
-        let url = `${API_BASE}/alerts/history?risk_level=${riskLevel}`
+        let url = `${API_BASE}/alerts/history?risk_level=${riskLevel}&_t=${Date.now()}`
         if (hours) url += `&hours=${hours}`
-        const res = await fetch(url)
+        const res = await fetch(url, { cache: 'no-store' })
         const data = await res.json()
         if (data.status === 'ok') {
             return data.alerts.map((alert, i) => ({
-                id: alert.id || i + 1,
+                id: alert.id || `${alert.timestamp}-${i}`, // Guaranteed stable string key
                 timestamp: alert.timestamp,
                 location: alert.zone_name,
                 riskLevel: alert.risk_level,
@@ -122,6 +146,17 @@ export async function fetchAlertsHistory(riskLevel = 'ALL', hours = null) {
     } catch (err) {
         console.error('Alert history API error:', err)
         return []
+    }
+}
+
+export async function clearAlertsHistory() {
+    try {
+        const res = await fetch(`${API_BASE}/alerts/history`, { method: 'DELETE' })
+        const data = await res.json()
+        return data.status === 'ok'
+    } catch (err) {
+        console.error('Clear alerts error:', err)
+        return false
     }
 }
 
@@ -182,10 +217,10 @@ export const RISK_ZONES = [
 ]
 
 export const INFRASTRUCTURE_MARKERS = [
-    { id: 1, name: 'Radar Station Alpha', type: 'radar', position: [34.10, 74.82], icon: '📡' },
-    { id: 2, name: 'Military Logistics Base', type: 'base', position: [34.06, 74.75], icon: '🏗️' },
-    { id: 3, name: 'Supply Route Checkpoint', type: 'checkpoint', position: [34.13, 74.88], icon: '🛣️' },
-    { id: 4, name: 'Forward Operating Base', type: 'base', position: [34.18, 74.95], icon: '⚔️' },
-    { id: 5, name: 'Emergency Shelter', type: 'shelter', position: [34.00, 74.70], icon: '🏥' },
-    { id: 6, name: 'Weather Station', type: 'weather', position: [34.08, 74.90], icon: '🌦️' },
+    { id: 1, name: 'Radar Station Alpha', type: 'radar', position: [34.10, 74.82], icon: 'radio' },
+    { id: 2, name: 'Military Logistics Base', type: 'base', position: [34.06, 74.75], icon: 'warehouse' },
+    { id: 3, name: 'Supply Route Checkpoint', type: 'checkpoint', position: [34.13, 74.88], icon: 'route' },
+    { id: 4, name: 'Forward Operating Base', type: 'base', position: [34.18, 74.95], icon: 'shield-half' },
+    { id: 5, name: 'Emergency Shelter', type: 'shelter', position: [34.00, 74.70], icon: 'tent' },
+    { id: 6, name: 'Weather Station', type: 'weather', position: [34.08, 74.90], icon: 'cloud-sun' },
 ]

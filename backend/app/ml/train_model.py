@@ -1,7 +1,7 @@
 """
 Train the landslide prediction ML model.
 
-Uses Random Forest and Gradient Boosting in a Voting ensemble.
+Uses Random Forest, LSTM, and MLP Neural Network in a Voting ensemble.
 Run this script to generate model.pkl.
 """
 import os
@@ -9,7 +9,9 @@ import sys
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, VotingClassifier
+from sklearn.ensemble import RandomForestClassifier, VotingClassifier
+from app.ml.lstm_model import LSTMClassifier
+from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import classification_report, accuracy_score, roc_auc_score
 from sklearn.pipeline import Pipeline
@@ -17,7 +19,7 @@ import joblib
 
 # Resolve paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATASET_PATH = os.path.join(SCRIPT_DIR, '..', '..', '..', 'dataset', 'landslide_training_data.csv')
+DATASET_PATH = os.path.join(SCRIPT_DIR, '..', '..', '..', 'dataset', 'landslide_data_6000.csv')
 MODEL_PATH = os.path.join(SCRIPT_DIR, 'model.pkl')
 
 
@@ -37,8 +39,7 @@ def train():
 
     # Features and labels
     feature_cols = [
-        'rainfall_mm', 'humidity_pct', 'temperature_c', 'soil_moisture',
-        'slope_angle', 'elevation_m', 'rainfall_3h', 'rainfall_trend', 'wind_speed'
+        'rainfall', 'soil_moisture', 'humidity', 'temperature', 'slope'
     ]
     X = df[feature_cols].values
     y = df['landslide'].values
@@ -54,24 +55,34 @@ def train():
     print("\nTraining ensemble model...")
 
     rf = RandomForestClassifier(
-        n_estimators=200,
-        max_depth=12,
+        n_estimators=100,
+        max_depth=8,
         min_samples_split=5,
         min_samples_leaf=2,
         random_state=42,
         n_jobs=-1,
     )
 
-    gbt = GradientBoostingClassifier(
-        n_estimators=150,
-        max_depth=6,
-        learning_rate=0.1,
-        subsample=0.8,
+    lstm = LSTMClassifier(
+        hidden_size=32,
+        num_layers=1,
+        epochs=100,
+        lr=0.001,
+        batch_size=32,
+    )
+
+    mlp = MLPClassifier(
+        hidden_layer_sizes=(32,),
+        activation='relu',
+        solver='adam',
+        alpha=0.0001,
+        learning_rate='adaptive',
+        max_iter=300,
         random_state=42,
     )
 
     ensemble = VotingClassifier(
-        estimators=[('rf', rf), ('gbt', gbt)],
+        estimators=[('rf', rf), ('lstm', lstm), ('mlp', mlp)],
         voting='soft',  # use probability averaging
     )
 

@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { MapContainer, TileLayer, Circle, Marker, Popup, useMap } from 'react-leaflet'
+import { renderToString } from 'react-dom/server'
+import { Radio, Warehouse, Route, ShieldHalf, Tent, CloudSun } from 'lucide-react'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 
@@ -11,12 +13,23 @@ L.Icon.Default.mergeOptions({
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
 })
 
-function createEmojiIcon(emoji) {
+const iconComponents = {
+    'radio': <Radio size={16} color="#3b82f6" />,
+    'warehouse': <Warehouse size={16} color="#f59e0b" />,
+    'route': <Route size={16} color="#10b981" />,
+    'shield-half': <ShieldHalf size={16} color="#ef4444" />,
+    'tent': <Tent size={16} color="#8b5cf6" />,
+    'cloud-sun': <CloudSun size={16} color="#0ea5e9" />,
+}
+
+function createLucideIcon(iconName) {
+    const iconComponent = iconComponents[iconName] || <Radio size={16} color="#3b82f6" />
+    const iconHtml = renderToString(iconComponent)
     return L.divIcon({
-        html: `<div style="font-size: 1.5rem; text-align: center; line-height: 1;">${emoji}</div>`,
-        className: 'emoji-marker',
-        iconSize: [30, 30],
-        iconAnchor: [15, 15],
+        html: `<div style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(15, 22, 41, 0.95); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">${iconHtml}</div>`,
+        className: 'custom-lucide-marker',
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
     })
 }
 
@@ -67,7 +80,7 @@ function RiskMap({ zones = [], markers = [] }) {
                     <Marker
                         key={marker.id}
                         position={marker.position}
-                        icon={createEmojiIcon(marker.icon)}
+                        icon={createLucideIcon(marker.icon)}
                     >
                         <Popup>
                             <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.85rem' }}>
@@ -94,11 +107,11 @@ function RiskMap({ zones = [], markers = [] }) {
                     <div className="legend-color" style={{ background: '#ef4444' }}></div>
                     High Risk
                 </div>
-                <h4 style={{ marginTop: '12px' }}>Infrastructure</h4>
-                <div className="legend-item">📡 Radar Station</div>
-                <div className="legend-item">🏗️ Logistics Base</div>
-                <div className="legend-item">🛣️ Supply Route</div>
-                <div className="legend-item">🏥 Emergency Shelter</div>
+                <h4 style={{ marginTop: '12px', marginBottom: '8px' }}>Infrastructure</h4>
+                <div className="legend-item" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}><Radio size={14} color="#3b82f6" /> Radar Station</div>
+                <div className="legend-item" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}><Warehouse size={14} color="#f59e0b" /> Logistics Base</div>
+                <div className="legend-item" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}><Route size={14} color="#10b981" /> Supply Route</div>
+                <div className="legend-item" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}><Tent size={14} color="#8b5cf6" /> Emergency Shelter</div>
             </div>
         </div>
     )

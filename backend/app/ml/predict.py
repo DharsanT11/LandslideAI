@@ -12,8 +12,7 @@ MODEL_PATH = os.path.join(SCRIPT_DIR, 'model.pkl')
 
 # Feature order (must match training)
 FEATURE_ORDER = [
-    'rainfall_mm', 'humidity_pct', 'temperature_c', 'soil_moisture',
-    'slope_angle', 'elevation_m', 'rainfall_3h', 'rainfall_trend', 'wind_speed'
+    'rainfall', 'soil_moisture', 'humidity', 'temperature', 'slope'
 ]
 
 _model = None
@@ -47,9 +46,24 @@ def predict_landslide_risk(features):
     # Build feature vector in the correct order
     X = np.array([[features.get(f, 0) for f in FEATURE_ORDER]])
 
-    # Get probability
+    # Get probability from the ensemble
     proba = model.predict_proba(X)[0]
     landslide_prob = float(proba[1]) * 100  # percentage
+
+    # Get probabilities from individual models
+    # The pipeline is: [('scaler', StandardScaler), ('model', VotingClassifier)]
+    voting_clf = model.named_steps['model']
+    
+    # Store individual predictions
+    individual_probs = {}
+    for name, estimator in voting_clf.named_estimators_.items():
+        # The estimator receives pre-scaled data because it's inside the pipeline's voting classifier,
+        # but sklearn's pipeline handles the scaling BEFORE handing to voting_clf.
+        # Actually, if we access estimators directly, we must pass the SCALED data.
+        # Let's cleanly just use the pipeline's transform step to get scaled X
+        X_scaled = model.named_steps['scaler'].transform(X)
+        est_proba = estimator.predict_proba(X_scaled)[0]
+        individual_probs[name] = float(est_proba[1]) * 100
 
     # Determine risk level
     if landslide_prob >= 65:
@@ -62,6 +76,11 @@ def predict_landslide_risk(features):
     return {
         'risk_level': risk_level,
         'probability': round(landslide_prob, 1),
+        'model_breakdown': {
+            'rf': round(individual_probs.get('rf', 0), 1),
+            'lstm': round(individual_probs.get('lstm', 0), 1),
+            'mlp': round(individual_probs.get('mlp', 0), 1),
+        }
     }
 
 

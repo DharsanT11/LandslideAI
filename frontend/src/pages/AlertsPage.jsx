@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { fetchAlertsHistory } from '../services/api'
+import { BellRing, Trash2 } from 'lucide-react'
+import { fetchAlertsHistory, clearAlertsHistory } from '../services/api'
 
 function AlertsPage() {
     const [alerts, setAlerts] = useState([])
@@ -40,7 +41,9 @@ function AlertsPage() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
             >
-                <h1>🚨 Alerts & Monitoring</h1>
+                <h1 style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <BellRing size={36} color="#3b82f6" /> Alerts & Monitoring
+                </h1>
                 <p>Historical alert log from AI risk predictions — real-time data from backend</p>
             </motion.div>
 
@@ -78,8 +81,29 @@ function AlertsPage() {
                         <option value="7D">Last 7 Days</option>
                     </select>
                 </div>
-                <div style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#64748b' }}>
-                    {loading ? 'Loading...' : `Showing ${alerts.length} alerts`}
+                <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                        {loading ? 'Loading...' : `Showing ${alerts.length} alerts`}
+                    </span>
+                    <button
+                        onClick={async () => {
+                            const ok = await clearAlertsHistory()
+                            if (ok) setAlerts([])
+                        }}
+                        style={{
+                            display: 'flex', alignItems: 'center', gap: '6px',
+                            padding: '6px 14px', borderRadius: '8px',
+                            border: '1px solid rgba(239,68,68,0.3)',
+                            background: 'rgba(239,68,68,0.1)',
+                            color: '#ef4444', cursor: 'pointer',
+                            fontSize: '0.8rem', fontWeight: 600,
+                            transition: 'all 0.2s',
+                        }}
+                        onMouseEnter={e => e.target.style.background = 'rgba(239,68,68,0.25)'}
+                        onMouseLeave={e => e.target.style.background = 'rgba(239,68,68,0.1)'}
+                    >
+                        <Trash2 size={14} /> Clear All
+                    </button>
                 </div>
             </motion.div>
 
@@ -131,7 +155,7 @@ function AlertsPage() {
                     </table>
                 </div>
             </motion.div>
-        </div>
+        </div >
     )
 }
 

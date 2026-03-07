@@ -60,29 +60,20 @@ def build_feature_vector(weather_data, zone_data):
     """
     Build the feature vector expected by the ML model.
 
-    Features (in order): rainfall_mm, humidity_pct, temperature_c,
-    soil_moisture, slope_angle, elevation_m, rainfall_3h,
-    rainfall_trend, wind_speed
+    Features (in order): rainfall, soil_moisture, humidity, temperature, slope
     """
     rainfall = weather_data.get('rainfall_mm', 0)
     humidity = weather_data.get('humidity_pct', 0)
     temperature = weather_data.get('temperature_c', 0)
     rainfall_3h = weather_data.get('rainfall_3h', 0)
-    wind_speed = weather_data.get('wind_speed', 0)
 
     soil_moisture = compute_soil_moisture(rainfall, humidity, temperature, rainfall_3h)
-    slope_angle = zone_data.get('slope_angle', 25)
-    elevation = zone_data.get('elevation', 1500)
-    rainfall_trend = compute_rainfall_trend(rainfall, rainfall_3h)
+    slope = zone_data.get('slope_angle', 25)
 
     return {
-        'rainfall_mm': rainfall,
-        'humidity_pct': humidity,
-        'temperature_c': temperature,
+        'rainfall': rainfall,
         'soil_moisture': soil_moisture,
-        'slope_angle': slope_angle,
-        'elevation_m': elevation,
-        'rainfall_3h': rainfall_3h,
-        'rainfall_trend': rainfall_trend,
-        'wind_speed': wind_speed,
+        'humidity': humidity,
+        'temperature': temperature,
+        'slope': slope,
     }

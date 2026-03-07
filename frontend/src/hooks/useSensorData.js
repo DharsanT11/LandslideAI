@@ -6,8 +6,11 @@ import { fetchSensorData, fetchPrediction, fetchAlerts, fetchForecast, fetchHeal
  *
  * Fetches sensor readings, ML predictions, alerts, and forecast
  * from the Flask backend (which gets live weather data from OpenWeatherMap).
+ *
+ * Accepts optional lat/lon — when set, all API calls include
+ * those coordinates so the backend fetches data for that location.
  */
-export function useSensorData(refreshInterval = 30000) {
+export function useSensorData(refreshInterval = 30000, lat = null, lon = null) {
     const [sensorData, setSensorData] = useState({
         soilMoisture: 0,
         rainfall: 0,
@@ -22,6 +25,7 @@ export function useSensorData(refreshInterval = 30000) {
     const [prediction, setPrediction] = useState({
         riskLevel: 'LOW',
         probability: 0,
+        zones: [],
     })
 
     const [alerts, setAlerts] = useState([])
@@ -42,12 +46,12 @@ export function useSensorData(refreshInterval = 30000) {
 
             setBackendStatus(health.api_configured ? 'live' : 'no_api_key')
 
-            // Fetch all data in parallel
+            // Fetch all data in parallel, passing lat/lon if set
             const [sensors, pred, alertsData, forecastData] = await Promise.all([
-                fetchSensorData(),
-                fetchPrediction(),
-                fetchAlerts(),
-                fetchForecast(),
+                fetchSensorData(lat, lon),
+                fetchPrediction(lat, lon),
+                fetchAlerts(lat, lon),
+                fetchForecast(lat, lon),
             ])
 
             if (sensors) {
@@ -55,10 +59,7 @@ export function useSensorData(refreshInterval = 30000) {
             }
 
             if (pred) {
-                setPrediction({
-                    riskLevel: pred.riskLevel,
-                    probability: pred.probability,
-                })
+                setPrediction(pred)
             }
 
             if (alertsData) {
@@ -74,9 +75,12 @@ export function useSensorData(refreshInterval = 30000) {
             console.error('Data fetch error:', err)
             setBackendStatus('error')
         }
-    }, [])
+    }, [lat, lon])
 
     useEffect(() => {
+        // Reset loading state when coordinates change
+        setLoading(true)
+
         // Initial fetch
         refresh()
 

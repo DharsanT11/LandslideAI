@@ -1,37 +1,38 @@
 import { motion } from 'framer-motion'
+import { Droplet, CloudRain, Wind, Thermometer, Mountain, Satellite } from 'lucide-react'
 
 function EnvironmentalPanel({ data }) {
     const sensors = [
         {
-            icon: '💧',
+            icon: <Droplet size={28} color="#3b82f6" strokeWidth={1.5} />,
             label: 'Soil Moisture',
             value: data.soilMoisture,
             unit: 'units',
             status: data.soilMoisture > 1200 ? 'danger' : data.soilMoisture > 800 ? 'warning' : 'normal',
         },
         {
-            icon: '🌧️',
+            icon: <CloudRain size={28} color="#8b5cf6" strokeWidth={1.5} />,
             label: 'Rainfall',
             value: data.rainfall,
             unit: 'mm',
             status: data.rainfall > 120 ? 'danger' : data.rainfall > 60 ? 'warning' : 'normal',
         },
         {
-            icon: '💨',
+            icon: <Wind size={28} color="#cbd5e1" strokeWidth={1.5} />,
             label: 'Humidity',
             value: data.humidity,
             unit: '%',
             status: data.humidity > 85 ? 'danger' : data.humidity > 70 ? 'warning' : 'normal',
         },
         {
-            icon: '🌡️',
+            icon: <Thermometer size={28} color="#f43f5e" strokeWidth={1.5} />,
             label: 'Temperature',
             value: data.temperature,
             unit: '°C',
             status: data.temperature < 10 ? 'warning' : 'normal',
         },
         {
-            icon: '⛰️',
+            icon: <Mountain size={28} color="#d97706" strokeWidth={1.5} />,
             label: 'Slope Angle',
             value: data.slopeAngle,
             unit: '°',
@@ -42,7 +43,9 @@ function EnvironmentalPanel({ data }) {
     return (
         <div className="glass-card col-span-8">
             <div className="card-header">
-                <h3>🛰️ Environmental Monitoring</h3>
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Satellite size={18} className="text-accent" /> Environmental Monitoring
+                </h3>
                 <span className="card-badge badge-live">● Live</span>
             </div>
             <div className="env-panel-grid">

@@ -82,6 +82,7 @@ def run_risk_assessment(db=None):
             'timestamp': reading['timestamp'],
             'risk_level': prediction['risk_level'],
             'probability': prediction['probability'],
+            'model_breakdown': prediction.get('model_breakdown', {}),
             'rainfall_mm': reading['rainfall_mm'],
             'humidity_pct': reading['humidity_pct'],
             'soil_moisture': reading.get('soil_moisture', 0),

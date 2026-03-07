@@ -7,7 +7,7 @@ env/
 venv/
 pip-log.txt
 pip-delete-this-directory.txt
-.env
+# .env is needed inside the container for API keys
 .pytest_cache/
 .coverage
 htmlcov/

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { ShieldAlert } from 'lucide-react'
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -7,7 +8,9 @@ function Navbar() {
     return (
         <nav className="navbar">
             <NavLink to="/" className="navbar-logo">
-                <div className="navbar-logo-icon">🛡️</div>
+                <div className="navbar-logo-icon">
+                    <ShieldAlert size={20} color="#fff" />
+                </div>
                 <span>LandslideAI</span>
             </NavLink>
 

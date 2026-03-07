@@ -1,35 +1,41 @@
 import { motion } from 'framer-motion'
+import {
+    Radio, Settings, Brain, BarChart3, LayoutDashboard,
+    Droplet, CloudRain, CloudSun, Thermometer, Mountain, Ruler,
+    Trees, TrendingUp, GitMerge, ListChecks, Zap,
+    Shield, Building2, AlertTriangle, BookOpen, RefreshCw
+} from 'lucide-react'
 
 const pipelineSteps = [
-    { icon: '📡', label: 'IoT Sensors' },
-    { icon: '⚙️', label: 'Data Processing' },
-    { icon: '🧠', label: 'Machine Learning' },
-    { icon: '📊', label: 'Risk Prediction' },
-    { icon: '🖥️', label: 'Dashboard' },
+    { icon: <Radio size={24} />, label: 'IoT Sensors' },
+    { icon: <Settings size={24} />, label: 'Data Processing' },
+    { icon: <Brain size={24} />, label: 'Machine Learning' },
+    { icon: <BarChart3 size={24} />, label: 'Risk Prediction' },
+    { icon: <LayoutDashboard size={24} />, label: 'Dashboard' },
 ]
 
 const dataSources = [
-    { icon: '💧', name: 'Soil moisture sensors (capacitive/resistive)' },
-    { icon: '🌧️', name: 'Rainfall gauges — tipping bucket sensors' },
-    { icon: '🌦️', name: 'Weather APIs — OpenWeatherMap, IMD' },
-    { icon: '🌡️', name: 'Temperature & humidity — DHT22 sensors' },
-    { icon: '⛰️', name: 'Terrain datasets — SRTM elevation data' },
-    { icon: '📐', name: 'Inclinometers — slope angle measurement' },
+    { icon: <Droplet size={18} color="#3b82f6" />, name: 'Soil moisture sensors (capacitive/resistive)' },
+    { icon: <CloudRain size={18} color="#8b5cf6" />, name: 'Rainfall gauges — tipping bucket sensors' },
+    { icon: <CloudSun size={18} color="#0ea5e9" />, name: 'Weather APIs — OpenWeatherMap, IMD' },
+    { icon: <Thermometer size={18} color="#f43f5e" />, name: 'Temperature & humidity — DHT22 sensors' },
+    { icon: <Mountain size={18} color="#d97706" />, name: 'Terrain datasets — SRTM elevation data' },
+    { icon: <Ruler size={18} color="#10b981" />, name: 'Inclinometers — slope angle measurement' },
 ]
 
 const modelDetails = [
-    { icon: '🌲', name: 'Random Forest classifier for base prediction' },
-    { icon: '📈', name: 'Gradient Boosting for improved accuracy' },
-    { icon: '🔀', name: 'Ensemble method combining multiple models' },
-    { icon: '📊', name: 'Feature engineering: rainfall trends, soil saturation index' },
-    { icon: '✅', name: 'Validation: 92% accuracy on test datasets' },
-    { icon: '🔄', name: 'Real-time inference with sub-second latency' },
+    { icon: <Trees size={18} color="#10b981" />, name: 'Random Forest classifier for base prediction' },
+    { icon: <TrendingUp size={18} color="#3b82f6" />, name: 'Gradient Boosting for improved accuracy' },
+    { icon: <GitMerge size={18} color="#8b5cf6" />, name: 'Ensemble method combining multiple models' },
+    { icon: <BarChart3 size={18} color="#f59e0b" />, name: 'Feature engineering: rainfall trends, soil saturation index' },
+    { icon: <ListChecks size={18} color="#22c55e" />, name: 'Validation: 92% accuracy on test datasets' },
+    { icon: <Zap size={18} color="#eab308" />, name: 'Real-time inference with sub-second latency' },
 ]
 
 const systemPurpose = [
-    { icon: '🛡️', title: 'Disaster Prevention', desc: 'Proactive identification of landslide-prone zones before catastrophic events occur, enabling preventive measures and resource allocation.' },
-    { icon: '🏗️', title: 'Infrastructure Protection', desc: 'Safeguarding critical infrastructure including highways, defense installations, radar stations, and supply routes from geohazard damage.' },
-    { icon: '⚠️', title: 'Early Warning Support', desc: 'Providing actionable intelligence to decision makers with time-window predictions, enabling timely evacuations and route diversions.' },
+    { icon: <Shield size={24} color="#3b82f6" />, title: 'Disaster Prevention', desc: 'Proactive identification of landslide-prone zones before catastrophic events occur, enabling preventive measures and resource allocation.' },
+    { icon: <Building2 size={24} color="#3b82f6" />, title: 'Infrastructure Protection', desc: 'Safeguarding critical infrastructure including highways, defense installations, radar stations, and supply routes from geohazard damage.' },
+    { icon: <AlertTriangle size={24} color="#3b82f6" />, title: 'Early Warning Support', desc: 'Providing actionable intelligence to decision makers with time-window predictions, enabling timely evacuations and route diversions.' },
 ]
 
 function About() {
@@ -40,7 +46,9 @@ function About() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
             >
-                <h1>📖 About the System</h1>
+                <h1 style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <BookOpen size={36} color="#3b82f6" /> About the System
+                </h1>
                 <p>System architecture, data sources, AI model details, and mission purpose</p>
             </motion.div>
 
@@ -53,7 +61,9 @@ function About() {
                 style={{ marginBottom: '1.5rem' }}
             >
                 <div className="card-header">
-                    <h3>🔄 System Architecture Pipeline</h3>
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <RefreshCw size={18} className="text-accent" /> System Architecture Pipeline
+                    </h3>
                 </div>
                 <div className="about-pipeline">
                     {pipelineSteps.map((step, i) => (
@@ -84,7 +94,9 @@ function About() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                 >
-                    <h3>📡 Data Sources</h3>
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
+                        <Radio size={18} className="text-accent" /> Data Sources
+                    </h3>
                     <ul>
                         {dataSources.map((item) => (
                             <li key={item.name}>
@@ -100,7 +112,9 @@ function About() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                 >
-                    <h3>🤖 AI Model</h3>
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
+                        <Brain size={18} className="text-accent" /> AI Model
+                    </h3>
                     <ul>
                         {modelDetails.map((item) => (
                             <li key={item.name}>
@@ -118,7 +132,9 @@ function About() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 + i * 0.1 }}
                     >
-                        <h3>{item.icon} {item.title}</h3>
+                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem' }}>
+                            {item.icon} {item.title}
+                        </h3>
                         <p>{item.desc}</p>
                     </motion.div>
                 ))}
@@ -138,12 +154,28 @@ function About() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
             >
+                <div style={{ marginBottom: '1.5rem' }}>
+                    <a href="/models" style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '10px 20px',
+                        background: 'rgba(59, 130, 246, 0.1)',
+                        border: '1px solid rgba(59, 130, 246, 0.3)',
+                        borderRadius: '8px',
+                        color: '#60a5fa',
+                        fontWeight: 600,
+                        textDecoration: 'none'
+                    }}>
+                        <Brain size={18} /> View Live AI Model Comparison
+                    </a>
+                </div>
                 <p><strong style={{ color: '#94a3b8' }}>AI-Based Landslide Early Warning System for Strategic Infrastructure</strong></p>
                 <p style={{ marginTop: '0.5rem' }}>
                     Powered by IoT • Machine Learning • Geospatial Analytics • Real-Time Visualization
                 </p>
             </motion.div>
-        </div>
+        </div >
     )
 }
 
