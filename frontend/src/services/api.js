@@ -121,9 +121,11 @@ export async function fetchAlerts(lat, lon) {
  */
 export async function triggerAlertSave(lat, lon) {
     try {
-        await fetch(`${API_BASE}/alerts?lat=${lat}&lon=${lon}&save=1`)
+        console.log(`Triggering alert save for: ${lat}, ${lon}`)
+        const res = await fetch(`${API_BASE}/alerts?lat=${lat}&lon=${lon}&save=1&_t=${Date.now()}`, { cache: 'no-store' })
+        console.log(`Alert save response: ${res.status}`)
     } catch (err) {
-        // Silent — best effort
+        console.error("Alert save failed:", err)
     }
 }
 
@@ -205,54 +207,8 @@ export async function fetchHardwareStatus() {
 
 // ── Static Map Data (unchanged — these are configuration, not API data) ──
 
-export const RISK_ZONES = [
-    {
-        id: 1,
-        name: 'NH-44 Highway Corridor',
-        center: [34.08, 74.79],
-        radius: 3000,
-        risk: 'high',
-        color: '#ef4444',
-    },
-    {
-        id: 2,
-        name: 'Mountain Pass Zone',
-        center: [34.15, 74.85],
-        radius: 2500,
-        risk: 'medium',
-        color: '#f59e0b',
-    },
-    {
-        id: 3,
-        name: 'Valley Supply Route',
-        center: [34.02, 74.72],
-        radius: 2000,
-        risk: 'low',
-        color: '#22c55e',
-    },
-    {
-        id: 4,
-        name: 'Strategic Defense Post',
-        center: [34.12, 74.92],
-        radius: 2800,
-        risk: 'high',
-        color: '#ef4444',
-    },
-    {
-        id: 5,
-        name: 'Bridge Crossing Zone',
-        center: [34.05, 74.68],
-        radius: 1500,
-        risk: 'medium',
-        color: '#f59e0b',
-    },
-]
+export const RISK_ZONES = []
 
 export const INFRASTRUCTURE_MARKERS = [
-    { id: 1, name: 'Radar Station Alpha', type: 'radar', position: [34.10, 74.82], icon: 'radio' },
-    { id: 2, name: 'Military Logistics Base', type: 'base', position: [34.06, 74.75], icon: 'warehouse' },
-    { id: 3, name: 'Supply Route Checkpoint', type: 'checkpoint', position: [34.13, 74.88], icon: 'route' },
-    { id: 4, name: 'Forward Operating Base', type: 'base', position: [34.18, 74.95], icon: 'shield-half' },
-    { id: 5, name: 'Emergency Shelter', type: 'shelter', position: [34.00, 74.70], icon: 'tent' },
-    { id: 6, name: 'Weather Station', type: 'weather', position: [34.08, 74.90], icon: 'cloud-sun' },
+    { id: 1, name: 'ESP32 Soil Moisture Sensor', type: 'sensor', position: [11.2743, 77.6049], icon: 'radio' },
 ]

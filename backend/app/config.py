@@ -13,6 +13,16 @@ class Config:
     OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY', '')
     OPENWEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5'
 
+    # Twilio SMS
+    TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID', '')
+    TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN', '')
+    TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER', '')
+    ALERT_PHONE_NUMBER = os.getenv('ALERT_PHONE_NUMBER', '')
+
+    # Telegram Bot
+    TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
+    TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '')
+
     # Database
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     DB_PATH = os.path.join(BASE_DIR, 'landslide.db')

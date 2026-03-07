@@ -11,25 +11,22 @@ alert_bp = Blueprint('alerts', __name__)
 _alert_history = []
 
 
+from app.services.telegram_service import send_telegram_alert
+
 def _update_history(new_alerts):
-    """Append new alerts to history (max 200). 60s cooldown per zone to prevent spam."""
+    """Append new alerts to history (max 200)."""
     global _alert_history
     from datetime import datetime, timedelta
 
     for alert in new_alerts:
         zone = alert.get('zone_name', '')
-        # Block if the same zone already has an alert within the last 60 seconds
-        try:
-            alert_time = datetime.fromisoformat(alert['timestamp'])
-            cutoff = (alert_time - timedelta(seconds=60)).isoformat()
-            already_exists = any(
-                a.get('zone_name', '') == zone and a['timestamp'] > cutoff
-                for a in _alert_history
-            )
-            if not already_exists:
-                _alert_history.insert(0, alert)
-        except (ValueError, KeyError):
-            _alert_history.insert(0, alert)
+        _alert_history.insert(0, alert)
+        
+        # Send Telegram message for HIGH and MEDIUM risks
+        risk = alert.get('risk_level', '')
+        if risk in ('HIGH', 'MEDIUM'):
+            print(f"Triggering Telegram delivery for {zone}...")
+            send_telegram_alert(alert)
     _alert_history = _alert_history[:200]
 
 

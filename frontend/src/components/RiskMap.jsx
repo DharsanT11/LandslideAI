@@ -34,7 +34,7 @@ function createLucideIcon(iconName) {
 }
 
 function RiskMap({ zones = [], markers = [] }) {
-    const defaultCenter = [34.08, 74.79]
+    const defaultCenter = [11.2743, 77.6049]
     const defaultZoom = 12
 
     return (

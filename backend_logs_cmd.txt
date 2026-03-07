@@ -1,0 +1,146 @@
+============================================================
+  AI-Based Landslide Early Warning System
+  Backend Server
+============================================================
+
+🛡️  Landslide Early Warning System — Background Fetcher Started
+   Refresh interval: 300s
+   Monitoring 5 zones
+
+ * Serving Flask app 'app.main'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.2:5000
+[33mPress CTRL+C to quit[0m
+172.19.0.3 - - [07/Mar/2026 07:56:03] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:03] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:04] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:04] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:04] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+============================================================
+  AI-Based Landslide Early Warning System
+  Backend Server
+============================================================
+
+🛡️  Landslide Early Warning System — Background Fetcher Started
+   Refresh interval: 300s
+   Monitoring 5 zones
+
+ * Serving Flask app 'app.main'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.2:5000
+[33mPress CTRL+C to quit[0m
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/prediction HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/sensors HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/forecast HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/alerts HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/prediction HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/forecast HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/sensors HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:49] "GET /api/alerts HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:53] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:53] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:53] "GET /api/sensors HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:54] "GET /api/alerts HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:54] "GET /api/forecast HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:54] "GET /api/prediction HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:54] "GET /api/sensors HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:54] "GET /api/alerts HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:54] "GET /api/forecast HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:54] "GET /api/prediction HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:54] "GET /api/alerts/history?risk_level=ALL&_t=1772870214870 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:54] "GET /api/alerts/history?risk_level=ALL&_t=1772870214871 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:56] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:56] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:56] "GET /api/sensors HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:56] "GET /api/alerts HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:56] "GET /api/prediction HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:56] "GET /api/forecast HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:56] "GET /api/sensors HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:56] "GET /api/alerts HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:56] "GET /api/prediction HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:56:56] "GET /api/forecast HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:08] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:08] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:08] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:08] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:08] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:10] "GET /api/alerts?lat=99.99&lon=99.99&save=1&_t=1772870228680 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:36] "GET /api/alerts/history?risk_level=ALL&_t=1772870256726 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:36] "GET /api/alerts/history?risk_level=ALL&_t=1772870256725 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:50] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:50] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:50] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:50] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:50] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:50] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:50] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:50] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:50] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:57:50] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:58:20] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:58:20] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:58:21] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:58:21] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:58:21] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:58:50] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:58:50] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:58:51] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:58:51] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:58:51] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:59:20] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:59:20] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:59:21] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:59:21] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:59:21] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:59:50] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:59:50] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:59:51] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:59:51] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 07:59:51] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:00:20] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:00:20] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:00:20] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:00:21] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:00:21] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:00:50] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:00:50] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:00:51] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:00:51] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:00:51] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:01:20] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:01:20] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:01:21] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:01:21] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:01:21] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:01:50] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:01:50] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:01:51] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:01:51] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:01:51] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:20] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:20] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:20] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:20] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:20] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:45] "GET /api/alerts/history?risk_level=ALL&_t=1772870565619 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:45] "GET /api/alerts/history?risk_level=ALL&_t=1772870565619 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:46] "GET /api/alerts?lat=99.99&lon=99.99&save=1&_t=1772870563862 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:47] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:47] "GET /api/health HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:47] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:47] "GET /api/sensors?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:47] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:47] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:47] "GET /api/forecast?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:47] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:47] "GET /api/alerts?lat=99.99&lon=99.99 HTTP/1.1" 200 -
+172.19.0.3 - - [07/Mar/2026 08:02:47] "GET /api/prediction?lat=99.99&lon=99.99 HTTP/1.1" 200 -

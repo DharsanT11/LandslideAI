@@ -76,7 +76,7 @@ function LocationInput({ onLocationChange, currentLat, currentLon }) {
                             id="lat-input"
                             type="number"
                             step="any"
-                            placeholder="e.g. 34.08"
+                            placeholder="e.g. 11.27"
                             value={lat}
                             onChange={(e) => setLat(e.target.value)}
                             onKeyDown={handleKeyDown}
@@ -89,7 +89,7 @@ function LocationInput({ onLocationChange, currentLat, currentLon }) {
                             id="lon-input"
                             type="number"
                             step="any"
-                            placeholder="e.g. 74.79"
+                            placeholder="e.g. 77.60"
                             value={lon}
                             onChange={(e) => setLon(e.target.value)}
                             onKeyDown={handleKeyDown}
