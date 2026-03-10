@@ -352,7 +352,7 @@ function Landing() {
                     <div className="lp-footer-brand">
                         <div className="lp-footer-logo">
                             <div className="navbar-logo-icon" style={{ width: 28, height: 28, fontSize: '0.9rem', borderRadius: 6 }}>
-                                <ShieldAlert size={18} color="#fff" />
+                                <ShieldAlert size={18} color="#1A2B3B" />
                             </div>
                             <strong>LandslideAI</strong>
                         </div>

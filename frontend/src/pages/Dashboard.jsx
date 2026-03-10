@@ -84,8 +84,8 @@ function Dashboard({ lat, lon, onLocationChange }) {
                 style={{
                     marginTop: '1.5rem',
                     padding: '0.75rem 1.25rem',
-                    background: 'rgba(15, 22, 41, 0.5)',
-                    border: '1px solid rgba(148, 163, 184, 0.1)',
+                    background: '#F5F6F7',
+                    border: '1px solid #EDF0F2',
                     borderRadius: '12px',
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -93,7 +93,7 @@ function Dashboard({ lat, lon, onLocationChange }) {
                     flexWrap: 'wrap',
                     gap: '1rem',
                     fontSize: '0.8rem',
-                    color: '#64748b',
+                    color: '#6B7280',
                 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

@@ -69,20 +69,20 @@ function ModelsPanel({ prediction }) {
             {hasBreakdown && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', flex: 1 }}>
                     <div style={{
-                        background: 'rgba(15, 23, 42, 0.5)',
+                        background: '#F5F6F7',
                         padding: '1rem',
                         borderRadius: '12px',
-                        border: '1px solid rgba(234, 179, 8, 0.2)',
+                        border: '1px solid #EDF0F2',
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center'
                     }}>
                         <div>
-                            <div style={{ color: '#eab308', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>Final Voting Consensus</div>
-                            <div style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Location: {primaryPrediction?.zone_name || 'Loading...'}</div>
+                            <div style={{ color: '#f59e0b', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px', fontWeight: 700 }}>Final Voting Consensus</div>
+                            <div style={{ color: '#6B7280', fontSize: '0.85rem' }}>Location: {primaryPrediction?.zone_name || 'Loading...'}</div>
                         </div>
                         <div style={{ textAlign: 'right' }}>
-                            <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{finalProb.toFixed(1)}%</div>
+                            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#1A2B3B' }}>{finalProb.toFixed(1)}%</div>
                             <div className={`risk-tag risk-tag-${(primaryPrediction.risk_level || 'LOW').toLowerCase()}`} style={{ display: 'inline-block', fontSize: '0.75rem', padding: '2px 8px' }}>
                                 {primaryPrediction.risk_level || 'WAITING'} RISK
                             </div>
@@ -98,25 +98,24 @@ function ModelsPanel({ prediction }) {
                                 transition={{ delay: i * 0.1 }}
                                 style={{ display: 'grid', gridTemplateColumns: '40px 1fr 60px', alignItems: 'center', gap: '12px' }}
                             >
-                                <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: '#EDF0F2', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                     {model.icon}
                                 </div>
                                 <div>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                                        <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>{model.name}</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#94a3b8' }}>{model.prob.toFixed(1)}%</div>
+                                        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#1A2B3B' }}>{model.name}</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#6B7280' }}>{model.prob.toFixed(1)}%</div>
                                     </div>
-                                    <div className="risk-probability-bar" style={{ height: '4px', backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                                    <div className="risk-probability-bar" style={{ height: '4px', backgroundColor: '#EDF0F2' }}>
                                         <div
                                             className="risk-probability-fill"
                                             style={{
                                                 width: `${model.prob}%`,
                                                 backgroundColor: model.color,
-                                                boxShadow: `0 0 8px ${model.color}`
                                             }}
                                         />
                                     </div>
-                                    <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '4px' }}>{model.desc}</div>
+                                    <div style={{ fontSize: '0.75rem', color: '#6B7280', marginTop: '4px' }}>{model.desc}</div>
                                 </div>
                                 <div style={{ fontSize: '1.2rem', fontWeight: 700, textAlign: 'right', color: model.color }}>
                                     {model.prob.toFixed(0)}

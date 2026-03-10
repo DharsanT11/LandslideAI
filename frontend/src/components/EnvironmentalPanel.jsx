@@ -62,8 +62,8 @@ function EnvironmentalPanel({ data }) {
                         <motion.div
                             className="sensor-value"
                             key={sensor.value}
-                            initial={{ scale: 1.15, color: '#60a5fa' }}
-                            animate={{ scale: 1, color: '#f1f5f9' }}
+                            initial={{ scale: 1.15, color: '#6B7280' }}
+                            animate={{ scale: 1, color: '#1A2B3B' }}
                             transition={{ duration: 0.4 }}
                         >
                             {sensor.value}

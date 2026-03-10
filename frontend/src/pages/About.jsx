@@ -147,8 +147,8 @@ function About() {
                     textAlign: 'center',
                     padding: '1.5rem',
                     fontSize: '0.85rem',
-                    color: '#64748b',
-                    borderTop: '1px solid rgba(148,163,184,0.1)',
+                    color: '#6B7280',
+                    borderTop: '1px solid #EDF0F2',
                 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -160,17 +160,17 @@ function About() {
                         alignItems: 'center',
                         gap: '8px',
                         padding: '10px 20px',
-                        background: 'rgba(59, 130, 246, 0.1)',
-                        border: '1px solid rgba(59, 130, 246, 0.3)',
+                        background: '#F5F6F7',
+                        border: '1px solid #EDF0F2',
                         borderRadius: '8px',
-                        color: '#60a5fa',
+                        color: '#1A2B3B',
                         fontWeight: 600,
                         textDecoration: 'none'
                     }}>
                         <Brain size={18} /> View Live AI Model Comparison
                     </a>
                 </div>
-                <p><strong style={{ color: '#94a3b8' }}>AI-Based Landslide Early Warning System for Strategic Infrastructure</strong></p>
+                <p><strong style={{ color: '#1A2B3B' }}>AI-Based Landslide Early Warning System for Strategic Infrastructure</strong></p>
                 <p style={{ marginTop: '0.5rem' }}>
                     Powered by IoT • Machine Learning • Geospatial Analytics • Real-Time Visualization
                 </p>
